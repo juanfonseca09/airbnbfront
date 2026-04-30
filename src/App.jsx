@@ -90,7 +90,7 @@ export default function App() {
           <div style={{ padding: "20px" }}>
             <h3>¿Cómo funciona esto?</h3>
             <p>
-              Esta aplicación estima el precio por noche de una propiedad que se quiera poner en alquiler en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
+              Esta aplicación estima el precio por noche que deberia tener un propiedad para alquilar en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
             </p>
             <p>
               El modelo fue entrenado con datos reales de Airbnb y usa variables basicas como dormitorios, baños y capacidad, que son los factores que mas influyen en el precio.
@@ -102,7 +102,7 @@ export default function App() {
               El backend esta hecho en Python con FastAPI y está desplegado en Fly.io, mientras que el frontend esta en React y se comunica con la API para obtener la predicción.
             </p>
             <p>
-              Es una versión simplificada del problema real, faltan variables importantes como ubicación o reviews, pero sirve para mostrar como se pueden usar datos para estimar precios.
+              Es una versión muy simplificada del problema real, no tiene en cuenta datos como la ubicacion que influye bastante y tiene un error aproximado de 37 dolares, pero sirve para mostrar como se pueden usar datos para estimar precios.
             </p>
           </div>
         </Col>
