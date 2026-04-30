@@ -90,7 +90,7 @@ export default function App() {
           <div style={{ padding: "20px" }}>
             <h3>¿Cómo funciona esto?</h3>
             <p>
-              Esta aplicación estima el precio por noche de una propiedad que se quiera alquilar en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
+              Esta aplicación estima el precio por noche de una propiedad que se quiera poner en alquiler en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
             </p>
             <p>
               El modelo fue entrenado con datos reales de Airbnb, tomando datos basicos como dormitorios, baños y capacidad que son los que al fin y al cabo influyen en el precio.
