@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Airbnb Price Predictor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación simple que estima el precio por noche de una propiedad en Airbnb en Seattle usando machine learning.
 
-## Available Scripts
+## Qué hace
 
-In the project directory, you can run:
+Ingresás:
+- cantidad de dormitorios  
+- cantidad de baños  
+- capacidad de huéspedes  
 
-### `npm start`
+Y el sistema devuelve un precio estimado por noche.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Cómo está hecho
 
-### `npm test`
+Arranqué trabajando con datasets reales de Airbnb, probando distintas ideas como ocupación, fechas, etc.  
+Pero para simplificar y hacerlo más estable, terminé usando solo variables estructurales del alojamiento.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El modelo final es un Random Forest, entrenado con scikit-learn en Python.  
+Elegí ese modelo porque funciona bien sin mucho ajuste y capta relaciones más reales que una regresión simple.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Backend:** FastAPI 
+- **Modelo:** scikit-learn
+- **Frontend:** React + Bootstrap
+- **Deploy:** Fly.io
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+##  Cómo funciona
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. El usuario ingresa los datos en el frontend
+2. React hace una request a la API
+3. FastAPI recibe los datos y los pasa al modelo
+4. El modelo devuelve un precio estimado
+5. Se muestra en pantalla
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Correr el proyecto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm install
+npm start
