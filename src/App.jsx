@@ -42,55 +42,38 @@ export default function App() {
     setLoading(false);
   };
   const codigo = `
-df = pd.read_csv("listings.csv")
+dt = pd.read_csv("listings.csv")
 
 # dejamos precios como numeros y dejamos las variables a usar eliminando tambien filas vacias
-df["price"] = df["price"].replace("[$,]", "", regex=True).astype(float)
-df = df[["price", "bedrooms", "bathrooms", "accommodates"]].dropna()
+dt["price"] = dt["price"].replace("[$,]", "", regex=True).astype(float)
+dt = dt[["price", "bedrooms", "bathrooms", "accommodates"]].dropna()
 
 # sacamos las mas caras para que no altere el modelo
-df = df[df["price"] < 500]
+dt = dt[dt["price"] < 500]
 
 # definimos variables independientes y la variable objetivo
-X = df[["bedrooms", "bathrooms", "accommodates"]]
-y = df["price"]
+X = dt[["bedrooms", "bathrooms", "accommodates"]]
+y = dt["price"]
 
 # dividimos los datos 80% para entrenar el modelo y 20% para ver si funciona bien en datos nuevos
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+Xt, Xv, yt, yv = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # comparamos ambos modelos para evaluar resultados
-lr = LinearRegression()
-lr.fit(X_train, y_train)
+ml = LinearRegression()
+ml.fit(Xt, yt)
 
 rf = RandomForestRegressor(random_state=42)
-rf.fit(X_train, y_train)
+rf.fit(Xt, yt)
 
-y_pred_lr = lr.predict(X_test)
-y_pred_rf = rf.predict(X_test)
+pl = ml.predict(Xv)
+pr = rf.predict(Xv)
 
-mae_lr = mean_absolute_error(y_test, y_pred_lr)
-r2_lr = r2_score(y_test, y_pred_lr)
+el = mean_absolute_error(yv, pl)
+rl = r2_score(yv, pl)
 
-mae_rf = mean_absolute_error(y_test, y_pred_rf)
-r2_rf = r2_score(y_test, y_pred_rf)
+er = mean_absolute_error(yv, pr)
+rr = r2_score(yv, pr)
 
-print("LR")
-print("MAE:", round(mae_lr, 2))
-print("R2:", round(r2_lr, 2))
-
-print("\nRF")
-print("MAE:", round(mae_rf, 2))
-print("R2:", round(r2_rf, 2))
-
-importancia = rf.feature_importances_
-variables = X.columns
-
-print("\nImportancia de variables")
-for i in range(len(variables)):
-    print(variables[i], ":", round(importancia[i], 3))
-    
-# usamos rf luego de ver mejores resultados
-joblib.dump(rf, "model.pkl")
 `;
 
   return (
