@@ -137,13 +137,27 @@ joblib.dump(rf, "model.pkl")
         <Col md={6} className="d-flex align-items-center">
           <div style={{ padding: "20px" }}>
             <h3>¿Cómo funciona esto?</h3>
-            <p>Modelo de machine learning con Random Forest.</p>
+            <p>
+              Esta aplicación estima el precio por noche que deberia tener un propiedad para alquilar en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
+            </p>
+            <p>
+              El modelo fue entrenado con datos reales de Airbnb y usa variables basicas como dormitorios, baños y capacidad, que son los factores que mas influyen en el precio.
+            </p>
+            <p>
+              Use un Random Forest porque no asume una relación lineal entre las variables y el precio, y en pruebas simples funcionó mejor que una regresión lineal.
+            </p>
+            <p>
+              El backend esta hecho en Python con FastAPI y está desplegado en Fly.io, mientras que el frontend esta en React y se comunica con la API para obtener la predicción.
+            </p>
+            <p>
+              Es una versión muy simplificada del problema real, no tiene en cuenta datos como la ubicacion que influye bastante y tiene un error aproximado de 37 dolares, pero sirve para mostrar como se pueden usar datos para estimar precios.
+            </p>
           </div>
         </Col>
       </Row>
       <Row className="p-4">
         <Col>
-          <h3>Código del modelo (Python)</h3>
+          <h3>Codigo del modelo:</h3>
           <SyntaxHighlighter language="python" style={oneDark}>
             {codigo}
           </SyntaxHighlighter>
