@@ -135,7 +135,7 @@ importancia = rf.feature_importances_
           </Card>
         </Col>
         <Col md={6} className="d-flex align-items-center">
-          <div style={{ padding: "20px" }}>
+          <div style={{ padding: "10px" }}>
             <h3>¿Cómo funciona esto?</h3>
             <p>
               Esta aplicación estima el precio por noche que deberia tener un propiedad para alquilar en Airbnb dentro de la ciudad de Seattle usando un modelo de machine learning.
