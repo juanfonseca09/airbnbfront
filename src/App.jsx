@@ -44,16 +44,21 @@ export default function App() {
   const codigo = `
 df = pd.read_csv("listings.csv")
 
-df["price"] = df["price"].replace("[\\$,]", "", regex=True).astype(float)
+# dejamos precios como numeros y dejamos las variables a usar eliminando tambien filas vacias
+df["price"] = df["price"].replace("[\$,]", "", regex=True).astype(float)
 df = df[["price", "bedrooms", "bathrooms", "accommodates"]].dropna()
 
+# sacamos las mas caras para que no altere el modelo
 df = df[df["price"] < 500]
 
+# definimos variables independientes y la variable objetivo
 X = df[["bedrooms", "bathrooms", "accommodates"]]
 y = df["price"]
 
+# dividimos los datos 80% para entrenar el modelo y 20% para ver si funciona bien en datos nuevos
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+# comparamos ambos modelos para evaluar resultados
 lr = LinearRegression()
 lr.fit(X_train, y_train)
 
@@ -73,17 +78,18 @@ print("LR")
 print("MAE:", round(mae_lr, 2))
 print("R2:", round(r2_lr, 2))
 
-print("\\nRF")
+print("\nRF")
 print("MAE:", round(mae_rf, 2))
 print("R2:", round(r2_rf, 2))
 
 importancia = rf.feature_importances_
 variables = X.columns
 
-print("\\nImportancia de variables")
+print("\nImportancia de variables")
 for i in range(len(variables)):
     print(variables[i], ":", round(importancia[i], 3))
-
+    
+# usamos rf luego de ver mejores resultados
 joblib.dump(rf, "model.pkl")
 `;
 
