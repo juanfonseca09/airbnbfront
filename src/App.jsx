@@ -1,8 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Form, Button, Card, Spinner } from "react-bootstrap";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function App() {
   const [form, setForm] = useState({
@@ -41,57 +39,6 @@ export default function App() {
 
     setLoading(false);
   };
-  const codigo = `
-dt = pd.read_csv("listings.csv")
-
-# dejamos precios como numeros y dejamos las variables a usar eliminando tambien filas vacias
-dt["price"] = dt["price"].replace("[$,]", "", regex=True).astype(float)
-dt = dt[["price", "bedrooms", "bathrooms", "accommodates"]].dropna()
-
-# sacamos las mas caras para que no altere el modelo
-dt = dt[dt["price"] < 500]
-
-# definimos variables independientes y la variable objetivo
-X = dt[["bedrooms", "bathrooms", "accommodates"]]
-y = dt["price"]
-
-# dividimos los datos 80% para entrenar el modelo y 20% para ver si funciona bien en datos nuevos
-Xt, Xv, yt, yv = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# comparamos ambos modelos para evaluar resultados
-ml = LinearRegression()
-ml.fit(Xt, yt)
-
-rf = RandomForestRegressor(random_state=42)
-rf.fit(Xt, yt)
-
-pl = ml.predict(Xv)
-pr = rf.predict(Xv)
-
-el = mean_absolute_error(yv, pl)
-rl = r2_score(yv, pl)
-
-er = mean_absolute_error(yv, pr)
-rr = r2_score(yv, pr)
-
-importancia = rf.feature_importances_
-
-# De donde obtenemos los siguientes resultados: 
-
-# LR
-# MAE: 38.95
-# R2: 0.42
-
-# RF
-# MAE: 36.93
-# R2: 0.47
-
-# Importancia de variables
-# bedrooms: 0.719
-# bathrooms: 0.111
-# accommodates: 0.17
-
-`;
 
   return (
     <Container fluid className="bg-light">
@@ -153,14 +100,6 @@ importancia = rf.feature_importances_
               Es una versión muy simplificada del problema real, no tiene en cuenta datos como la ubicacion que influye bastante y tiene un error aproximado de 37 dolares, pero sirve para mostrar como se pueden usar datos para estimar precios.
             </p>
           </div>
-        </Col>
-      </Row>
-      <Row className="p-4">
-        <Col>
-          <h3>Codigo del modelo:</h3>
-          <SyntaxHighlighter language="python" style={oneDark}>
-            {codigo}
-          </SyntaxHighlighter>
         </Col>
       </Row>
     </Container>
