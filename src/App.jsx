@@ -45,7 +45,7 @@ export default function App() {
 df = pd.read_csv("listings.csv")
 
 # dejamos precios como numeros y dejamos las variables a usar eliminando tambien filas vacias
-df["price"] = df["price"].replace("[\$,]", "", regex=True).astype(float)
+df["price"] = df["price"].replace("[$,]", "", regex=True).astype(float)
 df = df[["price", "bedrooms", "bathrooms", "accommodates"]].dropna()
 
 # sacamos las mas caras para que no altere el modelo
