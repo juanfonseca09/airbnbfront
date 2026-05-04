@@ -74,6 +74,23 @@ rl = r2_score(yv, pl)
 er = mean_absolute_error(yv, pr)
 rr = r2_score(yv, pr)
 
+importancia = rf.feature_importances_
+
+# De donde obtenemos los siguientes resultados: 
+
+# LR
+# MAE: 38.95
+# R2: 0.42
+
+# RF
+# MAE: 36.93
+# R2: 0.47
+
+# Importancia de variables
+# bedrooms: 0.719
+# bathrooms: 0.111
+# accommodates: 0.17
+
 `;
 
   return (
@@ -127,10 +144,10 @@ rr = r2_score(yv, pr)
               El modelo fue entrenado con datos reales de Airbnb y usa variables basicas como dormitorios, baños y capacidad, que son los factores que mas influyen en el precio.
             </p>
             <p>
-              Use un Random Forest porque no asume una relación lineal entre las variables y el precio, y en pruebas simples funcionó mejor que una regresión lineal.
+              Use un Random Forest porque no asume una relación lineal entre las variables y el precio, y en pruebas funcionó un poco mejor que una regresión lineal aunque, como se puede ver en los resultados de la ejecucion, ninguno fue muy preciso, ademas se puede observar como el tamaño del alojamiento es el factor que mas influye en el precio.
             </p>
             <p>
-              El backend esta hecho en Python con FastAPI y está desplegado en Fly.io, mientras que el frontend esta en React y se comunica con la API para obtener la predicción.
+              El backend esta hecho en Python con FastAPI y desplegado en Fly.io, mientras que el frontend esta en React y se comunica con la API para obtener la predicción.
             </p>
             <p>
               Es una versión muy simplificada del problema real, no tiene en cuenta datos como la ubicacion que influye bastante y tiene un error aproximado de 37 dolares, pero sirve para mostrar como se pueden usar datos para estimar precios.
