@@ -41,7 +41,7 @@ export default function App() {
 
     setLoading(false);
   };
-  const pythonCode = `
+  const codigo = `
 df = pd.read_csv("listings.csv")
 
 df["price"] = df["price"].replace("[\\$,]", "", regex=True).astype(float)
@@ -139,7 +139,7 @@ joblib.dump(rf, "model.pkl")
         <Col>
           <h3>Código del modelo (Python)</h3>
           <SyntaxHighlighter language="python" style={oneDark}>
-            {pythonCode}
+            {codigo}
           </SyntaxHighlighter>
         </Col>
       </Row>
