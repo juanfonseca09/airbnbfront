@@ -54,7 +54,6 @@ export default function App() {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          {/* FORM */}
           <Col md={5}>
             <Card className="project-card shadow-sm border-0">
               <Card.Body>
@@ -82,7 +81,14 @@ export default function App() {
                   </Button>
                 </Form>
                 <div className="text-center mt-4">
-                  {loading && <Spinner animation="border" variant="danger" />}
+                  {loading && (
+                    <div>
+                      <Spinner animation="border" variant="danger" />
+                      <p style={{ color: "#dc3545", marginTop: "10px", fontSize: "14px" }}>
+                        (puede tardar un poco)
+                      </p>
+                    </div>
+                  )}
                   {!loading && price && (
                     <h5>Precio estimado: USD {price.toFixed(2)}</h5>
                   )}
